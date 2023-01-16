@@ -33,7 +33,10 @@ function TodoProvider({ children }: any) {
     Alert.alert("Remover", `Deseja remover a task ${id} ?`, [
       {
         text: "Sim",
-        onPress: () => setTodos((_) => todos.filter((todo) => todo.id !== id)),
+        onPress: () => {
+          setTodos((_) => todos.filter((todo) => todo.id !== id));
+          Alert.alert(`To Do [${id}] removido com sucesso ✅`);
+        },
       },
 
       {
