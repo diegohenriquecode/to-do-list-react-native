@@ -6,9 +6,12 @@ export function EmptyList() {
     <View style={styles.container}>
       <Image source={require("../../../assets/clipboard.png")} />
 
+      <Text style={styles.textBold}>
+        Você ainda não tem tarefas cadastradas
+      </Text>
+
       <Text style={styles.text}>
-        Você ainda não tem tarefas cadastradas Crie tarefas e organize seus
-        itens a fazer
+        Crie tarefas e organize seus itens a fazer
       </Text>
     </View>
   );

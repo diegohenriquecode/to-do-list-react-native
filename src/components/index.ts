@@ -1,3 +1,4 @@
 export * from "./EmptyList";
-export * from "./Task";
+export * from "./Todo";
 export * from "./Counter";
+export * from "./TodoInput";

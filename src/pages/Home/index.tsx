@@ -6,52 +6,29 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { useState } from "react";
+import { useContext, useState } from "react";
 
 import { styles } from "./styles";
-import { Task, EmptyList, Counter } from "../../components";
+import { Todo, EmptyList, Counter, TodoInput } from "../../components";
+import { TodoContext } from "../../contexts";
+import { TodoContextType } from "../../types";
 
 export function Home() {
-  const [taskList, setTaskList] = useState<string[]>([]);
-  const [taskName, setTaskName] = useState<string>("");
-
-  function handleAddTask() {
-    return {};
-  }
-
-  function handleTaskRemove(task: string) {
-    return {};
-  }
+  const { todos } = useContext(TodoContext) as TodoContextType;
 
   return (
-    <View>
+    <View style={styles.container}>
       <Image source={require("../../../assets/logo.png")} />
 
-      <View style={styles.form}>
-        <TextInput
-          style={styles.input}
-          placeholder="Nome do participante"
-          placeholderTextColor={String(styles.placeholderTextColor)}
-          onChangeText={setTaskName}
-          value={taskName}
-        />
-
-        <TouchableOpacity style={styles.button} onPress={handleAddTask}>
-          <Text style={styles.buttonText}>+</Text>
-        </TouchableOpacity>
-      </View>
+      <TodoInput />
 
       <Counter />
 
       <FlatList
-        data={taskList}
-        keyExtractor={(item) => item}
+        data={todos}
+        keyExtractor={(item) => String(item.id)}
         renderItem={({ item }) => (
-          <Task
-            key={item}
-            name={item}
-            onRemove={() => handleTaskRemove(item)}
-          />
+          <Todo key={item.id} id={item.id} name={item.name} status={false} />
         )}
         ListEmptyComponent={() => <EmptyList />}
       />
